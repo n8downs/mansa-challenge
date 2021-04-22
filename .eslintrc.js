@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['react-app', 'prettier'],
+  extends: ['react-app', 'react-app/jest', 'prettier'],
   rules: {
     'no-unused-vars': 'error',
     'no-var': 'error',
