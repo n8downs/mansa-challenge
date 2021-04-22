@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Setup
+
+```
+git clone https://github.com/n8downs/mansa-challenge.git
+cd mansa-challenge
+yarn install
+yarn setup
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
