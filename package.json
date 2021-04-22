@@ -42,7 +42,10 @@
     "prettier": "^2.2.1"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "yarnpkg test --bail --watchAll=false --passWithNoTests --findRelatedTests"
+    ],
     "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
   }
 }
