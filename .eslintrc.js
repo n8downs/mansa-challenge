@@ -1,7 +1,7 @@
 module.exports = {
   extends: ['react-app', 'react-app/jest', 'prettier'],
   rules: {
-    'no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': 'error',
     'no-var': 'error',
   },
 };
