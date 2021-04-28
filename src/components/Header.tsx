@@ -20,7 +20,7 @@ export default function Header() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (query.length !== 0) {
-      history.push(`/business/${query}`);
+      history.push(`/business/${encodeURIComponent(query.replace(/\s/g, ''))}`);
     }
   }
 
@@ -42,9 +42,7 @@ export default function Header() {
                 }
                 placeholder="SIREN"
                 value={query}
-                onChange={(event) =>
-                  setQuery(encodeURIComponent(event.target.value))
-                }
+                onChange={(event) => setQuery(event.target.value)}
               />
             </FormControl>
           </form>

@@ -17,7 +17,7 @@ describe('Header', () => {
     expect(history.location.pathname).toBe('/');
   });
 
-  describe.only('Search Box', () => {
+  describe('Search Box', () => {
     test('is rendered', () => {
       const { getByPlaceholderText } = render(<Header />);
       expect(getByPlaceholderText(/siren/i)).toBeInTheDocument();
@@ -57,6 +57,27 @@ describe('Header', () => {
       expect(history.location.pathname).toBe(
         '/business/123%2Ftacos%3Ffoo%3Dbar'
       );
+    });
+
+    test('query text is not uri-encoded within the document', () => {
+      const { getByPlaceholderText, getByDisplayValue } = render(<Header />);
+
+      fireEvent.change(getByPlaceholderText(/siren/i), {
+        target: { value: '123/tacos' },
+      });
+      expect(getByDisplayValue('123/tacos')).toBeInTheDocument();
+    });
+
+    test('spaces are removed from query', () => {
+      const history = createMemoryHistory();
+      const { getByPlaceholderText } = render(<Header />, { history });
+
+      const searchBox = getByPlaceholderText(/siren/i);
+      fireEvent.change(searchBox, {
+        target: { value: ' 1 2 3 4 5 6 ' },
+      });
+      fireEvent.submit(searchBox);
+      expect(history.location.pathname).toBe('/business/123456');
     });
 
     test("pressing enter without a query doesn't navigate", () => {
