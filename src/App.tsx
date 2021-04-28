@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import HomeScreen from './screens/HomeScreen';
 import NotFoundScreen from './screens/NotFoundScreen';
+import BusinessScreen from './screens/BusinessScreen';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export default function App() {
@@ -15,6 +16,9 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             <HomeScreen />
+          </Route>
+          <Route path="/business/:siren">
+            <BusinessScreen />
           </Route>
           <Route path="*">
             <NotFoundScreen />
