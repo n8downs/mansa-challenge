@@ -10,14 +10,18 @@ import Search from '@material-ui/icons/Search';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import AccountBalance from '@material-ui/icons/AccountBalance';
+import { useHistory } from 'react-router-dom';
 
 export default function Header() {
   const [query, setQuery] = useState<string>('');
   const styles = useHeaderStyles();
+  const history = useHistory();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(query);
+    if (query.length !== 0) {
+      history.push(`/business/${query}`);
+    }
   }
 
   return (
@@ -38,7 +42,9 @@ export default function Header() {
                 }
                 placeholder="SIREN"
                 value={query}
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={(event) =>
+                  setQuery(encodeURIComponent(event.target.value))
+                }
               />
             </FormControl>
           </form>
