@@ -1,38 +1,32 @@
-import { render } from '@testing-library/react';
+import { render } from './utils/test';
 import App from './App';
-import { MemoryRouter } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 
 describe('App', () => {
   test('renders header banner', () => {
-    const { getByRole } = render(<App />, { wrapper: MemoryRouter });
+    const { getByRole } = render(<App />);
     expect(getByRole('banner')).toBeInTheDocument();
   });
 
   describe('routing', () => {
     test('handles home screen', () => {
-      const { getByText } = render(
-        <MemoryRouter initialEntries={['/']}>
-          <App />
-        </MemoryRouter>
-      );
+      const history = createMemoryHistory();
+      history.push('/');
+      const { getByText } = render(<App />, { history });
       expect(getByText(/welcome/i)).toBeInTheDocument();
     });
 
     test('handles some not-found screen', () => {
-      const { getByText } = render(
-        <MemoryRouter initialEntries={['/tacos']}>
-          <App />
-        </MemoryRouter>
-      );
+      const history = createMemoryHistory();
+      history.push('/tacos');
+      const { getByText } = render(<App />, { history });
       expect(getByText(/oops/i)).toBeInTheDocument();
     });
 
     test('handles other not-found screen', () => {
-      const { getByText } = render(
-        <MemoryRouter initialEntries={['/pizza']}>
-          <App />
-        </MemoryRouter>
-      );
+      const history = createMemoryHistory();
+      history.push('/pizza');
+      const { getByText } = render(<App />, { history });
       expect(getByText(/oops/i)).toBeInTheDocument();
     });
   });
