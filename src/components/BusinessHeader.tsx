@@ -1,7 +1,6 @@
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-// import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 export type BusinessInfo = {
   id: number;
@@ -22,8 +21,6 @@ export type BusinessInfo = {
 };
 
 export default function BusinessHeader({ info }: { info: BusinessInfo }) {
-  // const styles = useBusinessHeaderStyles();
-
   const name = info.denomination || `${info.prenom_usuel} ${info.nom}`;
   const mapUrl = `https://www.google.com/maps/place/${encodeURIComponent(
     info.etablissement_siege.geo_adresse.replace(/\ /g, '+')
@@ -44,14 +41,6 @@ export default function BusinessHeader({ info }: { info: BusinessInfo }) {
     </Box>
   );
 }
-
-// const useBusinessHeaderStyles = makeStyles((theme: Theme) =>
-//   createStyles({
-//     lastName: {
-//       textTransform: 'uppercase',
-//     },
-//   })
-// );
 
 function formatSIRET(siret: string) {
   return `${siret.slice(0, 3)} ${siret.slice(3, 6)} ${siret.slice(

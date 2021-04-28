@@ -13,7 +13,9 @@ describe('BusinessScreen', () => {
   test('renders', () => {
     const history = createMemoryHistory();
     history.push('/business/123456');
-    const { getByText } = render(<BusinessRoute />, { history });
-    expect(getByText('123456')).toBeInTheDocument();
+    render(<BusinessRoute />, { history });
+    expect(fetch).toHaveBeenCalledWith(
+      'https://entreprise.data.gouv.fr/api/sirene/v3/unites_legales/123456'
+    );
   });
 });
