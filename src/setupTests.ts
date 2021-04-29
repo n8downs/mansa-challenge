@@ -9,4 +9,5 @@ enableFetchMocks();
 
 beforeEach(() => {
   fetchMock.resetMocks();
+  expect.hasAssertions();
 });
