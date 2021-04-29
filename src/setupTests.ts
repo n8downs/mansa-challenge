@@ -4,10 +4,9 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
-import fetchMock, { enableFetchMocks } from 'jest-fetch-mock';
-enableFetchMocks();
-
 beforeEach(() => {
-  fetchMock.resetMocks();
+  jest
+    .spyOn(global, 'fetch')
+    .mockImplementation(() => new Promise((resolve, reject) => {}));
   expect.hasAssertions();
 });
