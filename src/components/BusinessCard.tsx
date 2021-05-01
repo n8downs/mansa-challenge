@@ -50,8 +50,8 @@ const useBusinessCardStyles = makeStyles((theme: Theme) =>
   createStyles({
     date: {
       width: 'fit-content',
-      padding: '0 0.25em',
-      borderRadius: '4px',
+      padding: theme.spacing(0, 1),
+      borderRadius: theme.shape.borderRadius,
     },
     active: {
       backgroundColor: theme.palette.success.light,
