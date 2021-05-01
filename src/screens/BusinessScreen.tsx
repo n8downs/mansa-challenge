@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import BusinessCard from '../components/BusinessCard';
 import { BusinessInfo } from '../data/business';
+import AccountList from '../components/AccountList';
 
 type BusinessParams = { siren: string };
 
@@ -38,7 +39,12 @@ export default function BusinessScreen() {
   }, [siren]);
 
   if (data) {
-    return <BusinessCard info={data.unite_legale} />;
+    return (
+      <>
+        <BusinessCard info={data.unite_legale} />
+        <AccountList />
+      </>
+    );
   } else if (failure || (response && !response.ok)) {
     return (
       <Typography>
@@ -58,7 +64,7 @@ const useBusinessScreenStyles = makeStyles((theme: Theme) =>
   createStyles({
     loadingContainer: {
       display: 'flex',
-      minHeight: '80vh',
+      minHeight: theme.spacing(50),
       alignItems: 'center',
       justifyContent: 'center',
     },
