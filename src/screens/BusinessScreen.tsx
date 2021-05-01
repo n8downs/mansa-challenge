@@ -5,10 +5,9 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import BusinessCard from '../components/BusinessCard';
-import { BusinessInfo } from '../data/business';
+import { BusinessInfo, BusinessParams } from '../data/business';
 import AccountList from '../components/AccountList';
-
-type BusinessParams = { siren: string };
+import AccountTransactions from '../components/AccountTransactions';
 
 type ResponseBody = {
   unite_legale: BusinessInfo;
@@ -16,7 +15,7 @@ type ResponseBody = {
 
 export default function BusinessScreen() {
   const styles = useBusinessScreenStyles();
-  const { siren } = useParams<BusinessParams>();
+  const { siren, accountId } = useParams<BusinessParams>();
 
   const [failure, setFailure] = useState<Error>();
   const [response, setResponse] = useState<Response>();
@@ -40,10 +39,13 @@ export default function BusinessScreen() {
 
   if (data) {
     return (
-      <>
-        <BusinessCard info={data.unite_legale} />
-        <AccountList />
-      </>
+      <Box className={styles.mainContainer}>
+        <Box className={styles.drawer}>
+          <BusinessCard info={data.unite_legale} />
+          <AccountList />
+        </Box>
+        {accountId && <AccountTransactions accountId={accountId} />}
+      </Box>
     );
   } else if (failure || (response && !response.ok)) {
     return (
@@ -62,6 +64,12 @@ export default function BusinessScreen() {
 
 const useBusinessScreenStyles = makeStyles((theme: Theme) =>
   createStyles({
+    mainContainer: {
+      display: 'flex',
+    },
+    drawer: {
+      marginRight: theme.spacing(2),
+    },
     loadingContainer: {
       display: 'flex',
       minHeight: theme.spacing(50),

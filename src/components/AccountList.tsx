@@ -1,38 +1,30 @@
 import { useEffect, useState } from 'react';
-
-type AccountType = 'TRANSACTION' | 'SAVINGS';
-type AccountInfo = {
-  account_id: string;
-  account_type: AccountType;
-  iban: string;
-  swift_bic: string;
-  sort_code: string;
-  account_number: string;
-  currency: 'GBP';
-  available: number;
-  current: number;
-  update_timestamp: string;
-};
-type ResponseData = AccountInfo[];
+import List from '@material-ui/core/List';
+import { AccountInfo } from '../data/account';
+import AccountLink from './AccountLink';
 
 export default function AccountList() {
-  const [data, setData] = useState<ResponseData>();
+  const [accounts, setAccounts] = useState<AccountInfo[]>();
 
   useEffect(() => {
     fetch('https://kata.getmansa.com/accounts').then((response) => {
-      console.log({ response });
       if (response.ok) {
-        return response.json().then((data) => {
-          setData(data);
+        return response.json().then((accounts) => {
+          setAccounts(accounts);
         });
       }
     });
   }, []);
 
-  console.log(data);
-  return (
-    <ul>
-      <li>Account</li>
-    </ul>
-  );
+  if (accounts) {
+    return (
+      <List>
+        {accounts.map((account) => {
+          return <AccountLink account={account} key={account.account_id} />;
+        })}
+      </List>
+    );
+  }
+
+  return <>TODO</>;
 }

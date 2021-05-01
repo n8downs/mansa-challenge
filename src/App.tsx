@@ -17,6 +17,9 @@ export default function App() {
           <Route exact path="/">
             <HomeScreen />
           </Route>
+          <Route path="/business/:siren/account/:accountId">
+            <BusinessScreen />
+          </Route>
           <Route path="/business/:siren">
             <BusinessScreen />
           </Route>

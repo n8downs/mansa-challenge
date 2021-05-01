@@ -1,3 +1,8 @@
+export type BusinessParams = {
+  siren: string;
+  accountId?: string;
+};
+
 export type BusinessInfo = {
   id: number;
   siren: string;
