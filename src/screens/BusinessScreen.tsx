@@ -4,7 +4,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import BusinessCard, { BusinessInfo } from '../components/BusinessCard';
+import BusinessCard from '../components/BusinessCard';
+import { BusinessInfo } from '../data/business';
 
 type BusinessParams = { siren: string };
 

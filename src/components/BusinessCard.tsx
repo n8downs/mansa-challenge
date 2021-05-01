@@ -4,20 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-
-export type BusinessInfo = {
-  id: number;
-  siren: string;
-  denomination: string | null;
-  prenom_usuel: string | null;
-  nom: string | null;
-  date_debut: string;
-  date_fin: string | null;
-  etablissement_siege: {
-    siret: string;
-    geo_adresse: string;
-  };
-};
+import { BusinessInfo } from '../data/business';
 
 export default function BusinessCard({ info }: { info: BusinessInfo }) {
   const styles = useBusinessCardStyles();

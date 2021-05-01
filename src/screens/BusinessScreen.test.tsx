@@ -2,6 +2,7 @@ import { waitFor, render } from '../utils/test';
 import BusinessScreen from './BusinessScreen';
 import { createMemoryHistory } from 'history';
 import { Route } from 'react-router-dom';
+import { createFakeBusinessInfo } from '../data/business';
 
 const BusinessRoute = () => (
   <Route path="/business/:siren">
@@ -54,14 +55,10 @@ describe('BusinessScreen', () => {
   test('renders BusinessCard for fetched business', async () => {
     mockResponse(
       JSON.stringify({
-        unite_legale: {
+        unite_legale: createFakeBusinessInfo({
           nom: 'Einstein',
           prenom_usuel: 'Albert',
-          etablissement_siege: {
-            siret: '1234567890001',
-            geo_adresse: '123 Boulevard de Bonne Nouvelle',
-          },
-        },
+        }),
       }),
       { status: 200 }
     );
