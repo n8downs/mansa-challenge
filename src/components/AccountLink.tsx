@@ -29,6 +29,8 @@ export default function AccountLink({ account }: { account: AccountInfo }) {
     [url]
   );
 
+  const last4 = account.account_number.slice(-4);
+
   return (
     <ListItem>
       <Button
@@ -36,11 +38,12 @@ export default function AccountLink({ account }: { account: AccountInfo }) {
         component={CustomLink}
         color={accountId === account.account_id ? 'primary' : 'default'}
         className={styles.button}
+        aria-label={`account ending in ${last4}`}
       >
         <ListItemIcon>
           {account.account_type === 'TRANSACTION' ? <Payment /> : <Savings />}
         </ListItemIcon>
-        <ListItemText>&hellip;{account.account_number.slice(-4)}</ListItemText>
+        <ListItemText>&hellip;{last4}</ListItemText>
         <ListItemText className={styles.amount}>
           {formatMoney(account.current, account.currency)}
         </ListItemText>

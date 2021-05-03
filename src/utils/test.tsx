@@ -21,3 +21,36 @@ export function render(
 
   return rtlRender(ui, { wrapper: Wrapper, ...rtlOptions });
 }
+
+export class FetchMock {
+  _responses: Array<{ url: string; response: Response | Error }>;
+
+  constructor() {
+    this._responses = [];
+    jest.spyOn(global, 'fetch').mockImplementation(async (url) => {
+      const response = this._responses.find(
+        ({ url: configUrl }) => configUrl === url
+      )?.response;
+      if (!response) {
+        return new Promise((resolve, reject) => {});
+      } else if (response instanceof Error) {
+        throw response;
+      } else {
+        return response;
+      }
+    });
+  }
+
+  mockResponse(url: string, bodyOrError: string | Error, init?: ResponseInit) {
+    this._responses.push({
+      url,
+      response:
+        bodyOrError instanceof Error
+          ? bodyOrError
+          : new Response(
+              new Blob([bodyOrError], { type: 'application/json' }),
+              init
+            ),
+    });
+  }
+}

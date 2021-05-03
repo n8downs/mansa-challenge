@@ -1,4 +1,4 @@
-import { waitFor, render } from '../utils/test';
+import { waitFor, render, FetchMock } from '../utils/test';
 import BusinessScreen from './BusinessScreen';
 import { createMemoryHistory } from 'history';
 import { Route } from 'react-router-dom';
@@ -11,39 +11,11 @@ const BusinessRoute = () => (
 );
 
 describe('BusinessScreen', () => {
-  let responses: Array<{ url: string; response: Response | Error }>;
+  let fetchMock: FetchMock;
 
   beforeEach(() => {
-    responses = [];
-    jest.spyOn(global, 'fetch').mockImplementation(async (url) => {
-      const response = responses.find(({ url: configUrl }) => configUrl === url)
-        ?.response;
-      if (!response) {
-        return new Promise((resolve, reject) => {});
-      } else if (response instanceof Error) {
-        throw response;
-      } else {
-        return response;
-      }
-    });
+    fetchMock = new FetchMock();
   });
-
-  function mockResponse(
-    url: string,
-    bodyOrError: string | Error,
-    init?: ResponseInit
-  ) {
-    responses.push({
-      url,
-      response:
-        bodyOrError instanceof Error
-          ? bodyOrError
-          : new Response(
-              new Blob([bodyOrError], { type: 'application/json' }),
-              init
-            ),
-    });
-  }
 
   test('renders progressbar element', () => {
     const history = createMemoryHistory();
@@ -64,7 +36,7 @@ describe('BusinessScreen', () => {
   });
 
   test('renders error message if request is not successful', async () => {
-    mockResponse(
+    fetchMock.mockResponse(
       'https://entreprise.data.gouv.fr/api/sirene/v3/unites_legales/123456',
       JSON.stringify({ error: "Can't find that SIREN" }),
       {
@@ -83,7 +55,7 @@ describe('BusinessScreen', () => {
   });
 
   test('renders BusinessCard for fetched business', async () => {
-    mockResponse(
+    fetchMock.mockResponse(
       'https://entreprise.data.gouv.fr/api/sirene/v3/unites_legales/123456',
       JSON.stringify({
         unite_legale: createFakeBusinessInfo({
@@ -101,7 +73,7 @@ describe('BusinessScreen', () => {
   });
 
   test('handles fetch failures', async () => {
-    mockResponse(
+    fetchMock.mockResponse(
       'https://entreprise.data.gouv.fr/api/sirene/v3/unites_legales/123456',
       new Error('Request failure')
     );
