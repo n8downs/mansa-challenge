@@ -9,6 +9,6 @@ export function formatMoney(amount: number, currency: Currency) {
     case 'GBP':
       return `£${amountToShow}`;
     default:
-      return `{amountToShow} ${currency}`;
+      return `${amountToShow} ${currency}`;
   }
 }
