@@ -5,6 +5,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { formatMoney } from '../data/money';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 type Params = {
   accountId: string;
@@ -60,27 +62,34 @@ export default function AccountTransactions({ accountId }: Params) {
     oldestTransactionDate,
   ]);
 
+  const labelId = 'transactions-list-heading';
+
   return (
-    <List className={styles.list}>
-      {transactions.map((transaction) => (
-        <ListItem
-          key={`${transaction.timestamp}-${transaction.amount}-${transaction.status}`}
-        >
-          <ListItemText>
-            {new Date(transaction.timestamp).toLocaleDateString()}
-          </ListItemText>
-          <ListItemText className={styles.amount}>
-            {formatMoney(transaction.amount, transaction.currency)}
-          </ListItemText>
-        </ListItem>
-      ))}
-    </List>
+    <Box className={styles.container}>
+      <Typography variant="h6" id={labelId}>
+        Transactions
+      </Typography>
+      <List aria-labelledby={labelId}>
+        {transactions.map((transaction) => (
+          <ListItem
+            key={`${transaction.timestamp}-${transaction.amount}-${transaction.status}`}
+          >
+            <ListItemText>
+              {new Date(transaction.timestamp).toLocaleDateString()}
+            </ListItemText>
+            <ListItemText className={styles.amount}>
+              {formatMoney(transaction.amount, transaction.currency)}
+            </ListItemText>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
   );
 }
 
 const useAccountTransactionsStyles = makeStyles((theme: Theme) =>
   createStyles({
-    list: {
+    container: {
       flexGrow: 1,
     },
     amount: {
