@@ -22,10 +22,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "eslint . && prettier . --check",
     "test": "react-scripts test",
     "cy:run": "cypress run",
     "smokes": "start-server-and-test start http://localhost:3000 cy:run",
-    "eject": "react-scripts eject",
     "setup": "yarnpkg husky install"
   },
   "browserslist": {

@@ -1,8 +1,10 @@
-# Getting Started with Create React App
+# Mansa Coding Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hi there! This is a small demo repository whose purpose is to respond to the coding challenge found [here](https://github.com/MansaGroup/kanedama/tree/master/frontend). I also used it to spin up on new-to-me technologies like TypeScript, React Testing Library, Cypress, Material UI. As such, it's been the source of a lot of learning. It's also nice to get back to writing actual frontend code, as I've spent the last few years mostly doing infrastructure work to support a frontend team. Sometimes, making a button appear in the browser is more satisfying than digging in to an obscure performance problem in a production service.
 
-## Setup
+I've taken the approach to let the work be driven by pretending this was a real live project that I was planning to support for a while. This way, I could get a sense of how I might want to structure a React app if I were building one from scratch today. So, while it's probably overkill with things like git hooks, linting and routing, it reflects the more-or-less real journey I'd take. There's plenty that's missing or still todo for this app. I'd imagine tech-centric things like CI, deploy, an API/caching layer. Further, I'd expect to spend time on user-centric things like fleshing out the transactions list to be more real (currently, it uses a placeholder algorithm of walking backwards 90 days at a time until we have least 10 transactions). However, I feel that it's hit a point that feels like a good balance of learning and (hopefully) demonstrating an ability to build a web app. So, I'll stop here.
+
+### Setup
 
 ```
 git clone https://github.com/n8downs/mansa-challenge.git
@@ -11,9 +13,9 @@ yarn install
 yarn setup
 ```
 
-## Available Scripts
+## Scripts
 
-In the project directory, you can run:
+Since I bootstrapped this project with [Create React App](https://github.com/facebook/create-react-app), it has the usual scripts that you're probably familiar with from that ecosystem.
 
 ### `yarn start`
 
@@ -25,55 +27,12 @@ You will also see any lint errors in the console.
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the Jest test runner in the interactive watch mode. Use `yarn test --watchAll=false` to run all tests.
 
-### `yarn build`
+### `yarn lint`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Runs Eslint and Prettier against the codebase to enforce programatic style rules.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `yarn smokes`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Runs the (tiny) Cypress integration test suite.
