@@ -1,8 +1,8 @@
 # Mansa Coding Challenge
 
-Hi there! This is a small demo repository whose purpose is to respond to the coding challenge found [here](https://github.com/MansaGroup/kanedama/tree/master/frontend). I also used it to spin up on new-to-me technologies like TypeScript, React Testing Library, Cypress and Material UI, since Twitter Web used Flowtypes, Enzyme, Webdriver and an internal component library, respectively. As such, it's been the source of a lot of learning. It's also nice to get back to writing actual frontend code, as I've spent the last few years mostly doing infrastructure work to support a frontend team. Sometimes, making a button appear in the browser is more satisfying than digging in to an obscure performance problem in a production service.
+Hi there! This is a small demo repository whose purpose is to respond to the coding challenge found [here](https://github.com/MansaGroup/kanedama/tree/master/frontend). I also used it to spin up on new-to-me technologies like TypeScript, React Testing Library, Cypress and Material UI, since Twitter Web used Flowtypes, Enzyme, Webdriver and an internal component library, respectively. As such, it's been the source of a lot of learning. It's also nice to get back to writing actual frontend code, as I've spent the last few years mostly doing infrastructure work to support a frontend team. Sometimes, making a button appear in the browser is more satisfying than digging in to an obscure performance problem in a production service!
 
-I've taken the approach to let the work be driven by pretending this was a real live project that I was planning to support for a while. This way, I could get a sense of how I might want to structure a React app if I were building one from scratch today. So, while it's probably overkill with things like git hooks, linting and routing, it reflects the more-or-less real journey I'd take. There's plenty that's missing or still todo for this app. I'd imagine tech-centric things like CI, deploy, an API/caching layer. Further, I'd expect to spend time on user-centric things like fleshing out the transactions list to be more real (currently, it uses a placeholder algorithm of walking backwards 90 days at a time until we have least 10 transactions). However, I feel that it's hit a point that feels like a good balance of learning and (hopefully) demonstrating an ability to build a web app. So, I'll stop here.
+I've taken the approach to let the work be driven by pretending this was a real live project that I was planning to support for a while. This way, I could get a sense of how I might want to structure a React app if I were building one from scratch today. So, while it's probably overkill with things like git hooks, linting and routing, it reflects the more-or-less real journey I'd take. There's plenty that's missing or still todo for this app. I'd imagine tech-centric things like CI, deploy, and an API/caching layer. Further, I'd expect to spend time on user-centric things like fleshing out the transactions list to be more real (currently, it uses a placeholder algorithm of walking backwards 90 days at a time until we have least 10 transactions). However, I feel that it's hit a point that feels like a good balance of learning and (hopefully) demonstrating an ability to build a web app. So, I'll stop here.
 
 ### Setup
 
@@ -33,3 +33,7 @@ Runs Eslint and Prettier against the codebase to enforce programatic style rules
 ### `yarn smokes`
 
 Runs the (tiny) Cypress integration test suite.
+
+## Screenshot
+
+![screenshot](./screenshot.png 'Screenshot of project')
